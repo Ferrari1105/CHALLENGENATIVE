@@ -1,4 +1,4 @@
-const mockData = {
+const dataHarcodeada = {
     "results": [
         {
             "id": 782585,
@@ -66,4 +66,4 @@ const mockData = {
     "totalResults": 5220
 }
 
-export default mockData
+export default dataHarcodeada

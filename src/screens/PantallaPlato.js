@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native'
-import Layout from '../components/Layout';
-import Plato from '../components/Plato';
+import Layout from '../Componentes/Layout';
+import Plato from '../Componentes/Plato';
 import useFetch from '../hooks/useFetch';
 
 const PantallaPlato = ({ route }) => {

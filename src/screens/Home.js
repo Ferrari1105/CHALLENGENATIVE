@@ -1,12 +1,11 @@
 import { FlatList, StyleSheet, Text, View, RefreshControl, TextInput, ScrollView, Button } from 'react-native';
-import Plato from '../components/Plato'
+import Plato from '../Componentes/Plato'
 import { useEffect, useRef, useState } from 'react'
 import useFetch from '../hooks/useFetch';
-import Layout from '../components/Layout';
+import Layout from '../Componentes/Layout';
 
 const Home = ({ navigation }) => {
-    const [listaPlatos, setListaPlatos] = useState([])
-
+    const [Platos, setPlatos] = useState([])
     const [refreshing, setRefreshing] = useState(false)
     const [platosFiltrados, setPlatosFiltrados] = useState([])
     const [busqueda, setBusqueda] = useState('')
@@ -15,7 +14,7 @@ const Home = ({ navigation }) => {
         setRefreshing(true)
         const platos = await useFetch(true)
         setRefreshing(false)
-        setListaPlatos(platos)
+        setPlatos(platos)
         setPlatosFiltrados(platos)
     }
 
@@ -23,7 +22,7 @@ const Home = ({ navigation }) => {
 
     useEffect(() => { // filtrar platos
         if (!busqueda) return
-        var nuevosPlatos = [...listaPlatos]
+        var nuevosPlatos = [...Platos]
         nuevosPlatos = nuevosPlatos.filter(plato => (
             plato.title.toUpperCase().includes(busqueda.toUpperCase())
         ))
@@ -38,9 +37,9 @@ const Home = ({ navigation }) => {
 
     return (
         <Layout>
-            <Text>Home</Text>
+            <Text style={{fontSize: '40px', color:'white', display: 'flex', justifyContent: 'center'}}>Home</Text>
             <View style={{width: '100%'}}>
-                <Button title="Ver tus platos (menu)" onPress={() => navigation.navigate('Menu')} />
+                <Button title="Ver Menu" onPress={() => navigation.navigate('Menu')} />
             </View>
             <TextInput 
                 placeholder='Buscar plato...'
@@ -59,7 +58,7 @@ const Home = ({ navigation }) => {
                             refreshing={refreshing}
                         />
                     }
-                    contentContainerStyle={styles.listaPlatos}
+                    contentContainerStyle={styles.Platos}
                     data={platosFiltrados}
                     renderItem={({ item }) => <Plato {...item} handlePress={() => handlePress(item.id)} />}
                     keyExtractor={item => item.id}
@@ -70,7 +69,7 @@ const Home = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    listaPlatos: {
+    Platos: {
         flex: 1,
         alignItems: 'center',
         gap: 20,
@@ -80,6 +79,8 @@ const styles = StyleSheet.create({
     textInput: {
         height: 40, 
         borderColor: 'gray',
+        color: 'black',
+        backgroundColor:'white',
         borderRadius: 5,
         borderWidth: 1, 
         width: '100%', 

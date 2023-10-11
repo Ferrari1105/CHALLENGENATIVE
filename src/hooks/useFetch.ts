@@ -1,12 +1,12 @@
-import mockData from "../mocks/data"
-
-const API = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=3762930b913b46e2a8d5de5d687bfcd0'
+import dataHarcodeada from "./data"
+//Esta parte de la data fue pedida presatada de axelcymerman debido a que no se comprendia el uso de la api
+const Api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=3762930b913b46e2a8d5de5d687bfcd0'
 
 export default async function useFetch(hardcodeado: Boolean, id: number) {
     var result = null
-    if (hardcodeado) result = mockData  
+    if (hardcodeado) result = dataHarcodeada  
     try {
-        const response = await fetch(API)
+        const response = await fetch(Api)
         if (!response.ok) throw new Error('Error en la llamada a la API')
         result = await response.json() as Promise<APIResponse>
     } catch (error) {
